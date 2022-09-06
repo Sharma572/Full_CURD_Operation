@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 export const ReadData = () => {
   const [data, setData] = useState([]);
+  const [tableTheme, setTableTheme] = useState("");
+
 
   function getData() {
     axios
@@ -36,6 +38,14 @@ export const ReadData = () => {
 
   return (
     <>
+
+<div class="form-check form-switch mx-5 my-2">
+  <input class="form-check-input" type="checkbox" onClick={()=>{
+    if (tableTheme === "table-dark table-hover") setTableTheme("");
+    else setTableTheme("table-dark table-hover");
+  }} />
+</div>
+
       <div className="d-flex justify-content-between my-4 mx-5">
         <h3>Read Operation</h3>
         <Link to="/">
@@ -43,7 +53,7 @@ export const ReadData = () => {
         </Link>
       </div>
       <div className="col-8 mx-auto">
-        <table class="table">
+        <table class={`table ${tableTheme}`}>
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -58,7 +68,7 @@ export const ReadData = () => {
               <>
                 <tbody>
                   <tr key={index}>
-                    <th scope="row">{ele.id}</th>
+                    <th scope="row">{index+1}</th>
                     <td>{ele.name}</td>
                     <td>{ele.email}</td>
                     <td>

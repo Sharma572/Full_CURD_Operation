@@ -60,6 +60,7 @@ export const UpdateData = () => {
           <button
             type="submit"
             className="btn btn-success"
+            disabled={localStorage.getItem('name') === name && localStorage.getItem('email') === email}
             onClick={handleUpdate}
           >
             Updata

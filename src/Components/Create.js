@@ -11,14 +11,18 @@ export const Forms = () => {
   // const header = {"Access-Control-Allow-Origin":"*"}
   const handleForm = (e) => {
     e.preventDefault();
-    axios
-      .post("https://631627085b85ba9b11f1273a.mockapi.io/Todo-Curd", {
-        name: name,
-        email: email,
-      })
-      .then(() => {
-        histroy("/read");
-      });
+    if(name === "" && email === "" ){
+        return ""
+    }else{
+        axios
+        .post("https://631627085b85ba9b11f1273a.mockapi.io/Todo-Curd", {
+          name: name,
+          email: email,
+        })
+        .then(() => {
+          histroy("/read");
+        });
+    }
   };
   return (
     <>
@@ -56,6 +60,7 @@ export const Forms = () => {
           <button
             type="submit"
             className="btn btn-primary"
+            disabled={name.length < 5 && email.length < 8}
             onClick={handleForm}
           >
             Submit
