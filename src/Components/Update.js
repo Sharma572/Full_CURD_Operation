@@ -1,34 +1,36 @@
 import axios from "axios";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
-export const Forms = () => {
+export const UpdateData = () => {
+  const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
-  const histroy = useNavigate();
+  const navigate = useNavigate();
 
-  // const header = {"Access-Control-Allow-Origin":"*"}
-  const handleForm = (e) => {
+  useEffect(() => {
+    setId(localStorage.getItem("id"));
+    setName(localStorage.getItem("name"));
+    setEmail(localStorage.getItem("email"));
+  }, []);
+
+  const handleUpdate = (e) => {
     e.preventDefault();
     axios
-      .post("https://631627085b85ba9b11f1273a.mockapi.io/Todo-Curd", {
+      .put(`https://631627085b85ba9b11f1273a.mockapi.io/Todo-Curd/${id}`, {
         name: name,
         email: email,
       })
       .then(() => {
-        histroy("/read");
+        navigate("/read");
       });
   };
+
   return (
     <>
-      <div className="d-flex justify-content-between my-4 mx-5">
-        <h3>Create Operation</h3>
-        <Link to="/read">
-          <button className="btn btn-sm btn-primary">Show Data</button>
-        </Link>
-      </div>
       <div id="form-Container">
+        <h3>Update Operation</h3>
         <form>
           <div className="mb-3">
             <label for="exampleInputname1" className="form-label">
@@ -38,6 +40,7 @@ export const Forms = () => {
               type="text"
               className="form-control"
               placeholder="Enter Your Name"
+              value={name}
               onChange={(e) => setName(e.target.value)}
             />
           </div>
@@ -50,16 +53,21 @@ export const Forms = () => {
               type="email"
               className="form-control"
               placeholder="Enter Your Email"
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <button
             type="submit"
-            className="btn btn-primary"
-            onClick={handleForm}
+            className="btn btn-success"
+            onClick={handleUpdate}
           >
-            Submit
+            Updata
           </button>
+
+          <Link to="/read">
+            <button className="btn btn-warning mx-4">Back</button>
+          </Link>
         </form>
       </div>
     </>

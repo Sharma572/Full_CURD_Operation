@@ -1,3 +1,15 @@
+Axios - put(to update the data),delete(to delete the data),post(to send data to api),get(to fetch data)
+
+localStorage-> to get the data of user while updating
+
+router -> when user click submit button the data it will send to the data holding page and when user click edit button it will redirect to updating page.
+
+useNavigate() , useEffect() hooks
+
+bootstrap use 
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
