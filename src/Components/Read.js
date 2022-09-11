@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
 
 export const ReadData = () => {
   const [data, setData] = useState([]);
@@ -38,7 +39,7 @@ export const ReadData = () => {
 
   return (
     <>
-
+<Navbar />
 <div class="form-check form-switch mx-5 my-2">
   <input class="form-check-input" type="checkbox" onClick={()=>{
     if (tableTheme === "table-dark table-hover") setTableTheme("");

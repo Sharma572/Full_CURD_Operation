@@ -1,10 +1,15 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import Navbar from "./Navbar";
 
 export const Forms = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [date, setDate] = useState(new Date().toLocaleString() + "");
+  
+  // const current = new Date();
+  // const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
 
   const histroy = useNavigate();
 
@@ -18,6 +23,7 @@ export const Forms = () => {
         .post("https://631627085b85ba9b11f1273a.mockapi.io/Todo-Curd", {
           name: name,
           email: email,
+          date:setDate(date),
         })
         .then(() => {
           histroy("/read");
@@ -26,6 +32,7 @@ export const Forms = () => {
   };
   return (
     <>
+        <Navbar />
       <div className="d-flex justify-content-between my-4 mx-5">
         <h3>Create Operation</h3>
         <Link to="/read">

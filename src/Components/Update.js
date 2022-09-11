@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import Navbar from "./Navbar";
 
 export const UpdateData = () => {
   const [id, setId] = useState("");
@@ -29,6 +30,7 @@ export const UpdateData = () => {
 
   return (
     <>
+    <Navbar />
       <div id="form-Container">
         <h3>Update Operation</h3>
         <form>
